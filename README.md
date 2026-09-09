@@ -9,6 +9,12 @@ Supported launchers:
 - Wargaming.net Game Center
 - Custom Windows executables (.exe)
 
+## Downloads
+
+Pre-built packages for 64-bit Linux are available on the [Releases](https://github.com/MrMyper/GamehubforLinux/releases/latest) page:
+- **AppImage**: Standalone executable for any distribution (`chmod +x Gamehub-Linux-*.AppImage && ./Gamehub-Linux-*.AppImage`)
+- **DEB**: Package for Debian, Ubuntu, Linux Mint, Pop!_OS (`sudo dpkg -i gamehub-linux_*.deb`)
+
 ## Features
 
 - **Isolated wine prefixes**: Each launcher or custom application runs in its own prefix under `~/.local/share/bnet-linux-launcher/prefixes/<id>/`.

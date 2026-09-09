@@ -12,6 +12,6 @@ if [ ! -f "$BIN" ] || [ "$1" = "--build" ] || [ "$1" = "--rebuild" ]; then
     fi
 fi
 
-echo "Launching Battle.net Linux Launcher..."
+echo "Launching Gamehub for Linux..."
 exec "$BIN" "$@"
 

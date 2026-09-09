@@ -5,7 +5,7 @@ import {
   Gamepad2,
   Flame,
   Wrench,
-  Sparkles,
+  Layers,
   Plus,
   Trash2,
 } from "lucide-react";
@@ -36,7 +36,7 @@ export const LauncherSelector: React.FC<LauncherSelectorProps> = ({
       case "ubisoft":
         return <Gamepad2 className="w-4 h-4 text-blue-400 shrink-0" />;
       case "ea":
-        return <Sparkles className="w-4 h-4 text-indigo-400 shrink-0" />;
+        return <Layers className="w-4 h-4 text-indigo-400 shrink-0" />;
       case "wargaming":
         return <Flame className="w-4 h-4 text-amber-400 shrink-0" />;
       default:

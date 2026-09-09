@@ -151,12 +151,12 @@ export const ControlDeck: React.FC<ControlDeckProps> = ({
     }
 
     return [
-      { label: "⭐ Official Valve Proton (Installed in System/Steam)", items: valveGroup },
-      { label: "🚀 GE-Proton 11 (Latest)", items: ge11Group },
-      { label: "⚡ GE-Proton 10", items: ge10Group },
-      { label: "🛡️ GE-Proton 9", items: ge9Group },
-      { label: "⚙️ GE-Proton 8", items: ge8Group },
-      { label: "📦 Other Installed Runners", items: otherGroup },
+      { label: "Valve Proton (Steam / System)", items: valveGroup },
+      { label: "GE-Proton 11 Series", items: ge11Group },
+      { label: "GE-Proton 10 Series", items: ge10Group },
+      { label: "GE-Proton 9 Series", items: ge9Group },
+      { label: "GE-Proton 8 Series", items: ge8Group },
+      { label: "Other Runners", items: otherGroup },
     ].filter((g) => g.items.length > 0);
   }, [releases]);
 
@@ -269,7 +269,7 @@ export const ControlDeck: React.FC<ControlDeckProps> = ({
                           value={rel.tag_name}
                           className="bg-[#090C12] text-slate-100 font-normal py-1"
                         >
-                          {rel.name} {rel.is_installed ? "• [Installed]" : "• [Download]"}
+                          {rel.name} {rel.is_installed ? "[Installed]" : "[Download]"}
                         </option>
                       ))}
                     </optgroup>
@@ -277,7 +277,7 @@ export const ControlDeck: React.FC<ControlDeckProps> = ({
                 )}
               </select>
               <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                ▼
+                <ChevronDown className="w-4 h-4" />
               </div>
             </div>
           </div>
@@ -317,7 +317,14 @@ export const ControlDeck: React.FC<ControlDeckProps> = ({
                         : "bg-slate-800/50 border-slate-700/50 text-slate-400 hover:text-slate-200 hover:border-slate-600"
                     }`}
                   >
-                    {isActive ? `✓ ${preset.label}` : `+ ${preset.label}`}
+                    {isActive ? (
+                      <span className="flex items-center gap-1">
+                        <Check className="w-3 h-3" />
+                        <span>{preset.label}</span>
+                      </span>
+                    ) : (
+                      `+ ${preset.label}`
+                    )}
                   </button>
                 );
               })}

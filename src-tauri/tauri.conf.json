@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "Battle.net Linux Launcher",
+        "title": "Gamehub for Linux",
         "width": 980,
         "height": 720,
         "minWidth": 840,

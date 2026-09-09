@@ -1,5 +1,5 @@
 import React from "react";
-import { Shield, Sparkles, AppWindow, CheckCircle2, RefreshCw } from "lucide-react";
+import { Shield, AppWindow, CheckCircle2, RefreshCw } from "lucide-react";
 import { LauncherStatus, LauncherPaths } from "../types/launcher";
 
 interface HeaderProps {
@@ -69,18 +69,16 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="w-full bg-[#0D121D]/90 backdrop-blur-md border-b border-slate-800/80 px-6 py-4 flex items-center justify-between shadow-lg">
       <div className="flex items-center gap-3.5">
-        {/* Battle.net custom stylized icon badge */}
-        <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 p-[1px] shadow-[0_0_15px_rgba(0,116,224,0.4)]">
+        <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 p-[1px]">
           <div className="w-full h-full bg-[#0B0F19] rounded-[11px] flex items-center justify-center">
-            <Shield className="w-6 h-6 text-cyan-400" />
+            <Shield className="w-5 h-5 text-cyan-400" />
           </div>
-          <Sparkles className="w-3.5 h-3.5 text-cyan-300 absolute -top-1 -right-1 animate-pulse" />
         </div>
 
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-400 uppercase">
-              Multi-Launcher
+            <h1 className="text-lg font-bold tracking-wider text-slate-100 uppercase">
+              Gamehub for Linux
             </h1>
             <span className="text-xs px-2 py-0.5 rounded font-mono font-medium tracking-wide bg-blue-950/60 text-cyan-400 border border-cyan-500/30">
               Linux Gaming
@@ -90,9 +88,9 @@ export const Header: React.FC<HeaderProps> = ({
             <span title={paths?.prefix_path || "~/.local/share/bnet-linux-launcher/prefixes"}>
               Isolated Prefixes
             </span>
-            <span className="text-slate-600">•</span>
+            <span className="text-slate-600">/</span>
             <span>Proton-GE Runner</span>
-            <span className="text-slate-600">•</span>
+            <span className="text-slate-600">/</span>
             <span>XDG Compliant</span>
           </p>
         </div>

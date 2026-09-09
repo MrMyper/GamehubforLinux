@@ -70,7 +70,7 @@ export function App() {
     let unlistenStopped: (() => void) | undefined;
 
     async function init() {
-      addLog("[System] Initializing OmniGame Linux Multi-Launcher...", "system");
+      addLog("[System] Initializing Gamehub for Linux...", "system");
 
       try {
         // Load paths
@@ -286,8 +286,6 @@ export function App() {
     }
 
     const release = releases.find((r) => r.tag_name === runner);
-
-    // Step 1: Check if selected Proton runner is installed
     if (!release?.is_installed) {
       setStatus("downloading_proton");
       addLog(`[Download] Starting download of ${runner}...`, "system");
@@ -314,8 +312,6 @@ export function App() {
     }
 
     const isInstalled = installedStatus[activeProfile.id] ?? false;
-
-    // Step 2: If launcher executable is missing and no custom executable is specified, run installer
     if (!isInstalled && !activeProfile.custom_exe_path) {
       setStatus("installing_bnet");
       addLog(`[Install] Starting ${activeProfile.name} first-run installation...`, "system");
@@ -335,7 +331,6 @@ export function App() {
       return;
     }
 
-    // Step 3: Launch the executable
     setStatus("launching");
     addLog(`[Launch] Executing ${activeProfile.name} via ${runner}...`, "system");
 
@@ -597,7 +592,7 @@ export function App() {
                 >
                   {releases.map((rel) => (
                     <option key={rel.tag_name} value={rel.tag_name} className="bg-[#090C12] text-white">
-                      {rel.name} {rel.is_installed ? "• [Installed]" : "• [Download]"}
+                      {rel.name} {rel.is_installed ? "[Installed]" : "[Download]"}
                     </option>
                   ))}
                 </select>

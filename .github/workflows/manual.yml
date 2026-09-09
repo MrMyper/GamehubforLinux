@@ -1,0 +1,65 @@
+name: Manual Build & Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Номер версии (например, v0.1.1)'
+        required: true
+        default: 'v0.1.1'
+      publish_release:
+        description: 'Опубликовать в GitHub Releases?'
+        type: boolean
+        default: true
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf libssl-dev
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Rust cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './src-tauri -> target'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Tauri bundles
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ inputs.version }}
+          releaseName: 'Gamehub for Linux ${{ inputs.version }}'
+          releaseBody: 'Built via manual GitHub Actions workflow.'
+          releaseDraft: false
+          prerelease: false
+
+      # Сохранить как артефакт сборки (чтобы можно было скачать сразу из Actions)
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: gamehub-linux-binaries
+          path: |
+            src-tauri/target/release/bundle/deb/*.deb
+            src-tauri/target/release/bundle/appimage/*.AppImage
